@@ -1,0 +1,52 @@
+import {
+  StreamlitComponentBase,
+  withStreamlitConnection,
+} from "streamlit-component-lib"
+import React from "react"
+import { Board } from "./Board"
+import { Triangle } from "./Triangle"
+import { Points } from "./Points"
+import { Checker } from "./Checker"
+import { Pip } from "./Pip"
+import "./index.css"
+
+class Position extends StreamlitComponentBase {
+  render = () => {
+    const position = this.props.args["position"]
+    return (
+      <div>
+        <svg viewBox="0 0 524 394" style={{ display: "block" }}>
+          <defs>
+            <filter id="shadow">
+              <feDropShadow
+                dx="2"
+                dy="2"
+                stdDeviation="2"
+                floodColor="grey"
+                floodOpacity="0.2"
+              />
+            </filter>
+          </defs>
+          <defs>
+            <filter id="shadowChecker">
+              <feDropShadow
+                dx="1"
+                dy="1"
+                stdDeviation="2"
+                floodColor="grey"
+                floodOpacity="0.2"
+              />
+            </filter>
+          </defs>
+          <Board />
+          <Triangle />
+          <Points />
+          <Checker position={position} />
+          <Pip position={position} />
+        </svg>
+      </div>
+    )
+  }
+}
+
+export default withStreamlitConnection(Position)

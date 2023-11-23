@@ -1,10 +1,10 @@
 import React from "react"
 import ReactDOM from "react-dom"
-import MyComponent from "./MyComponent"
+import Position from "./Position"
 
 ReactDOM.render(
   <React.StrictMode>
-    <MyComponent />
+    <Position />
   </React.StrictMode>,
   document.getElementById("root")
 )
