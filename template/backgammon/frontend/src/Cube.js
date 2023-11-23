@@ -4,7 +4,7 @@ const divider = "rgba(0,0,0,0.12)"
 
 export const Cube = ({ cube }) => {
   const cubeValue = cube === 0 ? 64 : 2 ** Math.abs(cube)
-  let cubePos = 0
+  let cubePos = 1 // middle
   if (cube < 0) {
     cubePos = 0
   } else if (cube > 0) {
