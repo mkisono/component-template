@@ -8,11 +8,12 @@ import { Triangle } from "./Triangle"
 import { Points } from "./Points"
 import { Checker } from "./Checker"
 import { Pip } from "./Pip"
+import { Cube } from "./Cube"
 import "./index.css"
 
 class Position extends StreamlitComponentBase {
   render = () => {
-    const position = this.props.args["position"]
+    const { position, cube } = this.props.args["entry"]
     return (
       <svg viewBox="0 0 524 394" style={{ display: "block" }}>
         <defs>
@@ -40,6 +41,7 @@ class Position extends StreamlitComponentBase {
         <Board />
         <Triangle />
         <Points />
+        <Cube cube={cube}/>
         <Checker position={position} />
         <Pip position={position} />
       </svg>
