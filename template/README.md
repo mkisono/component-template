@@ -1,21 +1,22 @@
-# streamlit-custom-component
+# streamlit-backgammon
 
-Streamlit component that allows you to do X
+Streamlit component that allows you to render backgammon position
 
 ## Installation instructions
 
 ```sh
-pip install streamlit-custom-component
+pip install streamlit-backgammon
 ```
 
 ## Usage instructions
 
 ```python
 import streamlit as st
+from backgammon import streamlit_backgammon
 
-from my_component import my_component
-
-value = my_component()
-
-st.write(value)
+entry = {
+    'position': [0, -2, 0, 0, 0, 0, 5, 0, 3, 0, 0, 0, -5, 5, 0, 0, 0, -3, 0, -5, 0, 0, 0, 0, 2, 0],
+    'cube': 1
+}
+streamlit_backgammon(entry=entry)
 ```
