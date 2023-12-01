@@ -44,7 +44,7 @@ class SliderWithButtons extends StreamlitComponentBase<State> {
     }
 
     return (
-      <Box sx={{ margin: "8px 16px" }}>
+      <Box sx={{ margin: 2 }}>
         <Stack direction="row" justifyContent={"space-between"}>
           <Stack direction="column" justifyContent={"flex-start"}>
             <Typography id="continuous-slider" gutterBottom>
