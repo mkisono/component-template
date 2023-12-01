@@ -1,6 +1,6 @@
 # slider-with-buttons
 
-Streamlit component that allows you to have slider with plus / minus buttons
+Streamlit component that allows you to control the slider with buttons.
 
 ## Installation instructions
 
@@ -12,7 +12,7 @@ pip install slider-with-buttons
 
 ```python
 import streamlit as st
-from slider import slider
+from slider_with_buttons import slider
 
 value = slider("Player Win %", 50)
 ```
