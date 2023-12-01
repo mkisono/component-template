@@ -44,10 +44,10 @@ class SliderWithButtons extends StreamlitComponentBase<State> {
     }
 
     return (
-      <Box sx={{ margin: 2 }}>
+      <Box>
         <Stack direction="row" justifyContent={"space-between"}>
           <Stack direction="column" justifyContent={"flex-start"}>
-            <Typography id="continuous-slider" gutterBottom>
+            <Typography id="continuous-slider" sx={{ color: theme?.textColor }}>
               {name}
             </Typography>
           </Stack>
@@ -68,13 +68,15 @@ class SliderWithButtons extends StreamlitComponentBase<State> {
             </IconButton>
           </Stack>
         </Stack>
-        <Slider
-          aria-label={name}
-          valueLabelDisplay="on"
-          value={this.state.value}
-          onChange={handleChange}
-          sx={{ marginTop: "32px", color: theme?.primaryColor }}
-        />
+        <Stack sx={{ padding: 3 }}>
+          <Slider
+            aria-label={name}
+            valueLabelDisplay="on"
+            value={this.state.value}
+            onChange={handleChange}
+            sx={{ color: theme?.primaryColor }}
+          />
+        </Stack>
       </Box>
     )
   }
