@@ -7,7 +7,7 @@ long_description = (this_directory / "README.md").read_text()
 
 setuptools.setup(
     name="slider-with-buttons",
-    version="0.0.2",
+    version="0.0.3",
     author="Masahiro Kisono",
     author_email="mkisono@gmail.com",
     description="Streamlit component that allows you to control the slider with buttons.",
