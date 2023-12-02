@@ -51,18 +51,23 @@ class SliderWithButtons extends StreamlitComponentBase<State> {
               {name}
             </Typography>
           </Stack>
-          <Stack spacing={2} direction="row" justifyContent={"flex-end"}>
+          <Stack
+            sx={{ padding: 1 }}
+            spacing={2}
+            direction="row"
+            justifyContent={"flex-end"}
+          >
             <IconButton
               aria-label="Remove"
               onClick={handleDecrease}
-              sx={{ color: theme?.primaryColor }}
+              sx={{ margin: 0, color: theme?.primaryColor }}
             >
               <Remove />
             </IconButton>
             <IconButton
               aria-label="Add"
               onClick={handleIncrease}
-              sx={{ color: theme?.primaryColor }}
+              sx={{ margin: 0, color: theme?.primaryColor }}
             >
               <Add />
             </IconButton>
