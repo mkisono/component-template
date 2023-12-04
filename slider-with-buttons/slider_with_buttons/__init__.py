@@ -43,7 +43,7 @@ else:
 # `declare_component` and call it done. The wrapper allows us to customize
 # our component's API: we can pre-process its input args, post-process its
 # output value, and add a docstring for users.
-def slider(name, value, key=None):
+def slider(names, values, key=None):
     """Create a new instance of "slider".
 
     Parameters
@@ -70,7 +70,7 @@ def slider(name, value, key=None):
     #
     # "default" is a special argument that specifies the initial return
     # value of the component before the user has interacted with it.
-    slider_value = _component_func(name=name, value=value, key=key, default=value)
+    slider_value = _component_func(names=names, values=values, key=key, default=values)
 
     # We could modify the value returned from the component if we wanted.
     # There's no need to do this in our simple example - but it's an option.

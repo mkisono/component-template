@@ -1,8 +1,6 @@
 import streamlit as st
 from slider_with_buttons import slider
 
-player_win = slider("Player Win %", 50, key="player_win")
-player_g = slider("Player Gammon %", 0, key="player_g")
+estimates = slider(["gammon %", "win %", "gammon %"], [0, 50, 100], key="estimates")
 
-st.write("Player Win %", player_win)
-st.write("Player Gammon %", player_g)
+st.write(estimates)
