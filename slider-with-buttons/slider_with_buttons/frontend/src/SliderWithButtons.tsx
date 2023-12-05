@@ -14,73 +14,87 @@ import Remove from "@mui/icons-material/Remove"
 import Add from "@mui/icons-material/Add"
 
 interface State {
-  value: number
+  values: number[]
 }
 
 class SliderWithButtons extends StreamlitComponentBase<State> {
-  public state = { value: this.props.args["value"] }
+  public state = { values: this.props.args["values"] }
 
   public render = (): ReactNode => {
-    const name = this.props.args["name"]
+    const names = this.props.args["names"]
     const { theme } = this.props
+    const colors = ["#308FB8", theme?.primaryColor, "#71B784"]
 
-    const handleChange = (event: Event, newValue: number | number[]) => {
-      this.setState({ value: newValue as number })
-      Streamlit.setComponentValue(newValue)
+    const handleChange = (event: Event, newValues: number | number[]) => {
+      this.setState({ values: newValues as number[] })
+      Streamlit.setComponentValue(newValues)
     }
 
-    const handleIncrease = () => {
-      const newValue = this.state.value + 1
-      if (newValue > 100) return
-      this.setState({ value: newValue })
-      Streamlit.setComponentValue(newValue)
+    const handleIncrease = (i: number) => () => {
+      const newValues = [...this.state.values]
+      newValues[i] += 1
+      if (newValues[i] > 100) return
+      if (i < 2) {
+        if (newValues[i] > newValues[i + 1]) return
+      }
+      this.setState({ values: newValues })
+      Streamlit.setComponentValue(newValues)
     }
 
-    const handleDecrease = () => {
-      const newValue = this.state.value - 1
-      if (newValue < 0) return
-      this.setState({ value: newValue })
-      Streamlit.setComponentValue(newValue)
+    const handleDecrease = (i: number) => () => {
+      const newValues = [...this.state.values]
+      newValues[i] -= 1
+      if (newValues[i] < 0) return
+      if (i > 0) {
+        if (newValues[i] < newValues[i - 1]) return
+      }
+      this.setState({ values: newValues })
+      Streamlit.setComponentValue(newValues)
     }
 
     return (
       <Box>
-        <Stack direction="row" justifyContent={"space-between"}>
-          <Stack direction="column" justifyContent={"flex-start"}>
-            <Typography id="continuous-slider" sx={{ color: theme?.textColor }}>
-              {name}
-            </Typography>
-          </Stack>
-          <Stack
-            sx={{ padding: 1 }}
-            spacing={2}
-            direction="row"
-            justifyContent={"flex-end"}
-          >
-            <IconButton
-              aria-label="Remove"
-              onClick={handleDecrease}
-              sx={{ margin: 0, color: theme?.primaryColor }}
-            >
-              <Remove />
-            </IconButton>
-            <IconButton
-              aria-label="Add"
-              onClick={handleIncrease}
-              sx={{ margin: 0, color: theme?.primaryColor }}
-            >
-              <Add />
-            </IconButton>
-          </Stack>
-        </Stack>
-        <Stack sx={{ padding: 3 }}>
+        <Stack sx={{ padding: 2 }}>
           <Slider
-            aria-label={name}
-            valueLabelDisplay="on"
-            value={this.state.value}
+            track={false}
+            value={this.state.values}
             onChange={handleChange}
             sx={{ color: theme?.primaryColor }}
           />
+        </Stack>
+        <Stack direction="row" justifyContent={"space-between"}>
+          {[0, 1, 2].map((i) => (
+            <Stack sx={{ padding: 1 }} spacing={1} direction="row" key={i}>
+              <IconButton
+                aria-label="Remove"
+                onClick={handleDecrease(i)}
+                sx={{ margin: 0, color: colors[i] }}
+              >
+                <Remove />
+              </IconButton>
+              <IconButton
+                aria-label="Add"
+                onClick={handleIncrease(i)}
+                sx={{ margin: 0, color: colors[i] }}
+              >
+                <Add />
+              </IconButton>
+            </Stack>
+          ))}
+        </Stack>
+        <Stack
+          direction="row"
+          justifyContent={"space-between"}
+          alignContent={"center"}
+        >
+          {[0, 1, 2].map((i) => (
+            <Typography
+              key={i}
+              sx={{ color: colors[i], fontWeight: "bold", padding: 1 }}
+            >
+              {names[i]}
+            </Typography>
+          ))}
         </Stack>
       </Box>
     )
