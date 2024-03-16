@@ -54,7 +54,7 @@ class SliderWithButtons extends StreamlitComponentBase<State> {
 
     return (
       <Box>
-        <Stack sx={{ padding: 2 }}>
+        <Stack sx={{ paddingLeft: 2, paddingRight: 2, paddingTop: 2 }}>
           <Slider
             track={false}
             value={this.state.values}
@@ -64,18 +64,18 @@ class SliderWithButtons extends StreamlitComponentBase<State> {
         </Stack>
         <Stack direction="row" justifyContent={"space-between"}>
           {[0, 1, 2].map((i) => (
-            <Stack sx={{ padding: 1 }} spacing={1} direction="row" key={i}>
+            <Stack spacing={1} direction="row" key={i}>
               <IconButton
-                aria-label="Remove"
+                aria-label="Decrease"
                 onClick={handleDecrease(i)}
-                sx={{ margin: 0, color: colors[i] }}
+                sx={{ color: colors[i] }}
               >
                 <Remove />
               </IconButton>
               <IconButton
-                aria-label="Add"
+                aria-label="Increase"
                 onClick={handleIncrease(i)}
-                sx={{ margin: 0, color: colors[i] }}
+                sx={{ color: colors[i] }}
               >
                 <Add />
               </IconButton>
