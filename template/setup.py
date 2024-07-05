@@ -7,14 +7,14 @@ long_description = (this_directory / "README.md").read_text()
 
 setuptools.setup(
     name="streamlit-backgammon",
-    version="0.0.2",
+    version="0.0.4",
     author="Masahiro Kisono",
     author_email="mkisono@gmail.com",
     description="Streamlit component that allows you to render backgammon position",
     long_description=long_description,
     long_description_content_type="text/markdown",
     url="",
-    packages=setuptools.find_packages(),
+    packages=setuptools.find_namespace_packages(),
     include_package_data=True,
     classifiers=[],
     python_requires=">=3.7",
