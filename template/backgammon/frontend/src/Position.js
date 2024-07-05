@@ -12,10 +12,16 @@ import { Cube } from "./Cube"
 import "./index.css"
 
 class Position extends StreamlitComponentBase {
+  state = {
+    showPip: false,
+  }
+  toggleShowPip = () => {
+    this.setState({ showPip: !this.state.showPip })
+  }
   render = () => {
     const { position, cube } = this.props.args["entry"]
     return (
-      <svg viewBox="0 0 524 394" style={{ display: "block" }}>
+      <svg viewBox="0 0 524 394" style={{ display: "block" }} onClick={this.toggleShowPip}>
         <defs>
           <filter id="shadow">
             <feDropShadow
@@ -41,9 +47,9 @@ class Position extends StreamlitComponentBase {
         <Board />
         <Triangle />
         <Points />
-        <Cube cube={cube}/>
+        <Cube cube={cube} />
         <Checker position={position} />
-        <Pip position={position} />
+        {this.state.showPip && <Pip position={position} />}
       </svg>
     )
   }
